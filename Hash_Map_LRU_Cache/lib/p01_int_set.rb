@@ -36,24 +36,25 @@ class IntSet
   def initialize(num_buckets = 20)
     @store = Array.new(num_buckets) { Array.new }
   end
-  # [0, 20][1][2][3][4][][][]
-  # num % 20
+
   def insert(num)
     @store[num] = num
     true
   end
 
   def remove(num)
+    @store.delete(num)
   end
 
   def include?(num)
+    store.include?(num)
   end
 
   private
   attr_reader :num_buckets
   def [](num)
     # optional but useful; return the bucket corresponding to `num`
-    [num % num_buckets]
+    @store[num % num_buckets]
   end
 
   def num_buckets
