@@ -93,7 +93,7 @@ class ResizingIntSet
   end
 
   protected
-  attr_writer :count, :num_buckets
+  attr_writer :count, :num_buckets, :store
   def [](num)
     # optional but useful; return the bucket corresponding to `num`
     store[num % num_buckets]
