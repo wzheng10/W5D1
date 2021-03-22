@@ -74,9 +74,11 @@ class ResizingIntSet
 
   def insert(num)
     if !include?(num)
-      store[num] = num
+      
       @count += 1
-      self.resize! if count >= num_buckets
+      # debugger
+      resize! if self.count > num_buckets
+      store[num] = num
     end
   end
 
@@ -107,7 +109,9 @@ class ResizingIntSet
     # debugger
 
     prev_store = @store
+    @count = 0
     @store = Array.new(2 * num_buckets) { Array.new }
+    
     prev_store.each { |num| insert(num) }
 
   end
